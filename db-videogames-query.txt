@@ -243,3 +243,11 @@ LIMIT 1;
 
 13- Selezionare le categorie dei videogame i quali hanno una media recensioni inferiore a 1.5 (10)
 
+SELECT DISTINCT c.name 
+FROM videogames v 
+JOIN category_videogame cv ON v.id = cv.videogame_id 
+JOIN categories c ON c.id = cv.category_id 
+JOIN reviews r ON r.videogame_id = v.id 
+GROUP BY v.id, c.name  
+HAVING AVG(r.rating) < 2
+
